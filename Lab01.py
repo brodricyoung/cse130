@@ -17,6 +17,7 @@
 # 5. How long did it take for you to complete the assignment?
 #    About 50 minutes. 
 
+
 def guessing_game():
     import random
 
