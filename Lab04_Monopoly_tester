@@ -1,0 +1,106 @@
+
+# 1. Name:
+#      Brodric Young
+
+# 2. Assignment Name:
+#      Lab 04: Monopoly
+
+# 3. Assignment Description:
+#      Deterimine if the player can place a hotel on Pennsylvania Avenue or not
+
+# 4. What was the hardest part? Be as specific as possible.
+#      The hardest part of this was trying to figure out how to run through all
+#       the test cases very quickly while also not having to put in a lot of extra
+#       work. Everything else was easy after making the flowcharts already.
+
+# 5. How long did it take for you to complete the assignment?
+#      About 2 hours.
+
+
+def game(name, properties, penn, carolina, pacific, hotels, money, houses):
+    print(name)
+    # all_color_group = input("Do you own all the green properties? (y/n) ")
+    all_color_group = properties
+    if all_color_group == "y":
+        # pa = int(input("What is on Pennsylvania Avenue? (0:nothing, 1:one house, ... 5:a hotel) "))
+        pa = penn
+
+        if pa < 5:
+            # nc = int(input("What is on North Carolina Avenue? (0:nothing, 1:one house, ... 5:a hotel) "))
+            nc = carolina
+
+            if nc < 5:
+                # pc = int(input("What is on Pacific Avenue? (0:nothing, 1:one house, ... 5:a hotel) "))
+                pc = pacific
+
+                if pc < 5:
+                    # num_hotels = int(input("How many hotels are there to purchase? "))
+                    num_hotels = hotels
+
+                    if num_hotels > 0:
+                        houses_pa_need = 4 - pa
+                        houses_nc_need = 4 - nc
+                        houses_pc_need = 4 - pc
+                        total_needed_houses = houses_pa_need + houses_nc_need + houses_pc_need
+                        total_cash_needed = (total_needed_houses + 1) * 200
+                        # cash = int(input("How much cash do you have to spend? "))
+                        cash = money
+
+                        if cash >= total_cash_needed:
+                            # num_houses = int(input("How many houses are there to purchase? "))
+                            num_houses = houses
+
+                            if num_houses >= total_needed_houses:
+                                print()
+                                print(f"This will cost ${total_cash_needed}")
+                                print(
+                                    f"     Purchase 1 hotel and {total_needed_houses} house(s).")
+                                print(
+                                    "     Put 1 hotel on Pennsylvania and return any houses to the bank.")
+
+                                if houses_nc_need > 0:
+                                    print(
+                                        f"     Put {houses_nc_need} house(s) on North Carolina.")
+                                if houses_pc_need > 0:
+                                    print(
+                                        f"     Put {houses_pc_need} house(s) on Pacific.")
+
+                            else:
+                                print(
+                                    "There are not enough houses available for purchase at this time.")
+                        else:
+                            print(
+                                "You do not have sufficient funds to purchase a hotel at this time.")
+                    else:
+                        print(
+                            "There are not enough hotels available for purchase at this time.")
+                else:
+                    print("Swap Pacific's hotel with Pennsylvania's 4 houses.")
+            else:
+                print("Swap North Carolina's hotel with Pennsylvania's 4 houses.")
+        else:
+            print("You cannot purchase a hotel if the property already has one.")
+    else:
+        print("You cannot purchase a hotel until you own all the properties of a given color group.")
+
+    print()
+    print("------------------------------------------------------------")
+    print()
+
+
+def main():
+    test_cases = [["---Does not own enough---", "n", 0, 0, 0, 10, 1000, 10],
+                  ["---Poor---", "y", 0, 0, 0, 10, 100, 15],
+                  ["---No houses---", "y", 0, 0, 0, 10, 9000, 10],
+                  ["---Swap with Pacific---", "y", 4, 4, 5, 0, 0, 0],
+                  ["---Swap with NC---", "y", 4, 5, 4, 0, 0, 0],
+                  ["---Already built---", "y", 5, 4, 4, 10, 1000, 10],
+                  ["---All at once---", "y", 0, 0, 0, 3, 3000, 12],
+                  ["---House and hotel---", "y", 3, 3, 3, 1, 5000, 3]]
+    for test in test_cases:
+        game(test[0], test[1], test[2], test[3],
+             test[4], test[5], test[6], test[7])
+
+
+if __name__ == "__main__":
+    main()

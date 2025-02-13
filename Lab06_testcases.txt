@@ -1,0 +1,14 @@
+Lab06.empty.json
+Empty
+Lab06.trivial.json
+trivial
+Lab06.trivial.json
+missing
+Lab06.languages.json
+C++
+Lab06.languages.json
+Lisp
+Lab06.countries.json
+United States of America
+Lab06.countries.json
+United States
